@@ -14,6 +14,9 @@ $ npm run dev
 # start mock server
 $ npm run mock:api
 
+# 規約違反のコードを自動的に修正（コミットする前に必ず実施する）←CIで実施するようにする
+$ npm run lintfix
+
 # build for production and launch server
 $ npm run build
 $ npm run start
