@@ -418,7 +418,7 @@ export default class ComplexTable extends Vue {
   private async getList() {
     this.listLoading = true
     const payload = {
-      uri: ROUTES.GET.PROJECTS,
+      uri: ROUTES.GET.PROJECTLIST,
       params: {}
     }
     const { data } = await this.$store.dispatch('getProjects', payload)

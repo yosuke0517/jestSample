@@ -1,12 +1,12 @@
 export const ROUTES = {
   GET: {
-    PROJECTS: '/api/projects',
-    DETAIL: '/api/detail/:id',
-    FAVORITE: '/api/favorite'
+    PROJECTLIST: '/project/list',
+    DETAIL: '/xxx/detail/:id',
+    FAVORITE: '/xxx/favorite'
   },
   POST: {
-    ENTRY: '/api/entry/:id/',
-    TOGGLE_FAVORITE: '/api/favorite/:id/toggle'
+    ENTRY: '/xxx/entry/:id/',
+    TOGGLE_FAVORITE: '/xxx/favorite/:id/toggle'
   }
 }
 export default ROUTES

@@ -14,5 +14,7 @@ app.get('/project/list', (req, res) =>
 )
 // あとは欲しいだけ上記の1行とjsonファイルを追加するだけ
 
-// eslint-disable-next-line no-console
-app.listen(8080, () => console.log('API Mock Server is running'))
+const port = 8080
+app.listen(port, () =>
+  console.log('API Mock Server is running. port is ' + port)
+)

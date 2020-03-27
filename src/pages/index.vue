@@ -147,10 +147,7 @@ export default class IndexPage extends Vue {
   }
 
   // TODO ページングはポストしていいのか、クライアントで完結させるのか。。。
-  page() {
-    console.log('this.currentPage')
-    console.log(this.currentPage)
-  }
+  page() {}
 
   search() {
     alert('ダミー！！TODO：' + this.input + 'をキーワードに検索する')

@@ -110,7 +110,7 @@ export default class InlineEditTable extends Vue {
   private async getList() {
     this.listLoading = true
     const payload = {
-      uri: ROUTES.GET.PROJECTS,
+      uri: ROUTES.GET.PROJECTLIST,
       params: {}
     }
     const { data } = await this.$store.dispatch('getProject', payload)
