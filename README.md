@@ -14,6 +14,9 @@ $ npm run dev
 # start mock server
 $ npm run mock:api
 
+# 規約違反のコードを自動的に修正（コミットする前に必ず実施する）←CIで実施するようにする
+$ npm run lintfix
+
 # build for production and launch server
 $ npm run build
 $ npm run start
@@ -515,16 +518,16 @@ validateEmailExists(rule, value, callback) { // 1.
 ```javascript
 rules = {
   email: [
-    { required: true, message: "入力必須です", trigger: "blur" },
+    { required: true, message: '入力必須です', trigger: 'blur' },
     {
-      type: "email",
-      message: "正しいメールアドレスを入力してください",
-      trigger: "blur"
+      type: 'email',
+      message: '正しいメールアドレスを入力してください',
+      trigger: 'blur'
     },
-    { max: 100, message: "100 文字以内で入力してください", trigger: "blur" },
-    { validator: this.validateEmailExists, trigger: "blur" } // 4.
+    { max: 100, message: '100 文字以内で入力してください', trigger: 'blur' },
+    { validator: this.validateEmailExists, trigger: 'blur' } // 4.
   ]
-};
+}
 ```
 
 - 4. `validator` に検証用の関数を指定します
@@ -565,9 +568,9 @@ config
 
 ```javascript
 module.exports = {
-  LoginUrl: "http://localhost:9000",
-  apiBaseUrl: "http://localhost:8080"
-};
+  LoginUrl: 'http://localhost:9000',
+  apiBaseUrl: 'http://localhost:8080'
+}
 ```
 
 - 使用する際は以下のようにします
