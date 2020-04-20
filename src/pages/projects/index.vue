@@ -180,7 +180,7 @@ export default class IndexPage extends Vue {
     // ローディング終了
   }
 
-  toggleFavorite(event) {
+  toggleFavorite() {
     alert('TODO:toggle favorite')
   }
 
