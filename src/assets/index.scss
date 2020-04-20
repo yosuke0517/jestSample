@@ -7,24 +7,32 @@
 
 body {
   height: 100%;
+  margin: 0px;
+  overflow: hidden;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Meiryo UI",
-    "Meiryo, メイリオ, Osaka", "MS PGothic", arial, helvetica, sans-serif;
+  font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'Meiryo UI',
+    'Meiryo, メイリオ, Osaka', 'MS PGothic', arial, helvetica, sans-serif;
 }
 
 html {
   height: 100%;
+  margin: 0px;
+  overflow: hidden;
 }
 
 #app {
   height: 100%;
+  margin: 0px;
+  overflow: hidden;
 }
 
 *,
 *:before,
 *:after {
+  height: 100%;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 a,
@@ -71,7 +79,7 @@ label {
 aside {
   background: #eef1f6;
   color: #2c3e50;
-  padding: 8px 24px;
+  // padding: 8px 24px;
   margin-bottom: 20px;
   border-radius: 2px;
   display: block;
@@ -125,7 +133,7 @@ aside {
 }
 
 .text-center {
-  text-align: center
+  text-align: center;
 }
 
 .sub-navbar {
@@ -136,7 +144,13 @@ aside {
   text-align: right;
   padding-right: 20px;
   transition: 600ms ease position;
-  background: linear-gradient(90deg, rgba(32, 182, 249, 1) 0%, rgba(32, 182, 249, 1) 0%, rgba(33, 120, 241, 1) 100%, rgba(33, 120, 241, 1) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(32, 182, 249, 1) 0%,
+    rgba(32, 182, 249, 1) 0%,
+    rgba(33, 120, 241, 1) 100%,
+    rgba(33, 120, 241, 1) 100%
+  );
 
   .subtitle {
     font-size: 20px;

@@ -1,10 +1,10 @@
 <template>
-  <div class="navbar">
+  <header class="template__header">
     <div class="left-menu">
       <el-tooltip
         class="item"
         effect="dark"
-        content="仮のcapreseアイコン"
+        content="仮のcapreseaアイコン"
         placement="top-start"
       >
         <i class="fas fa-exclamation-circle" @click="toHome"></i>
@@ -21,62 +21,42 @@
         <el-dropdown-menu slot="dropdown">
           <router-link to="/profile/">
             <el-dropdown-item>
-              {{ $t('navbar.profile') }}
+              {{ $t('header.profile') }}
             </el-dropdown-item>
           </router-link>
-          <router-link to="/">
-            <el-dropdown-item>
-              {{ $t('navbar.dashboard') }}
-            </el-dropdown-item>
-          </router-link>
-          <a
-            target="_blank"
-            href="https://github.com/armour/vue-typescript-admin-template/"
-          >
-            <el-dropdown-item>
-              {{ $t('navbar.github') }}
-            </el-dropdown-item>
-          </a>
-          <a
-            target="_blank"
-            href="https://armour.github.io/vue-typescript-admin-docs/"
-          >
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">
-              {{ $t('navbar.logOut') }}
+              {{ $t('header.logOut') }}
             </span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-  </div>
+  </header>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({})
-export default class CapNavbar extends Vue {
-  sidebar: boolean = false
-
-  toggleSideBar() {
-    this.sidebar = !this.sidebar
-  }
-
+export default class CapHeader extends Vue {
   toHome() {
     this.$router.push('/')
+  }
+
+  logout() {
+    alert('TODO logout')
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.navbar {
-  height: 50px;
+.template__header {
+  position: fixed;
+  height: 55px;
   overflow: hidden;
-  position: relative;
-  background: #fff;
+  width: 100%;
+  background: #007fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
@@ -90,6 +70,10 @@ export default class CapNavbar extends Vue {
 
     &:hover {
       background: rgba(0, 0, 0, 0.025);
+    }
+
+    .fa-user {
+      background: #808080;
     }
   }
 

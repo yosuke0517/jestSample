@@ -322,7 +322,7 @@ import { ROUTES } from '~/routes/api'
 import { ProjectData } from '~/types/project'
 import { exportJson2Excel } from '~/utils/excel'
 import { formatJson } from '~/utils'
-import Pagination from '~/components/Pagination/index.vue'
+import Pagination from '~/components/atoms/Pagination/index.vue'
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
@@ -352,7 +352,7 @@ const calendarTypeKeyValue = calendarTypeOptions.reduce(
 })
 export default class ComplexTable extends Vue {
   defaultProjectData: ProjectData = {
-    uuid: 0,
+    id: 0,
     status: 'draft',
     title: '',
     fullContent: '',
@@ -516,7 +516,7 @@ export default class ComplexTable extends Vue {
         tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
         const { data } = await this.$store.dispatch('updateData')
         for (const v of this.list) {
-          if (v.uuid === data.article.id) {
+          if (v.id === data.article.id) {
             const index = this.list.indexOf(v)
             this.list.splice(index, 1, data.article)
             break

@@ -94,7 +94,7 @@
     "externalLink": "外部リンク",
     "profile": "プロフィール"
   },
-  "navbar": {
+  "header": {
     "dashboard": "トップ",
     "github": "GitHub",
     "logOut": "ログアウト",

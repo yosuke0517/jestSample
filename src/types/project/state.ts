@@ -1,5 +1,6 @@
-import { ProjectData } from '~/types'
+import { ProjectData, ProjectDetail } from '~/types'
 
 export interface ProjectState {
   projectData: ProjectData
+  projectDetail: ProjectDetail
 }

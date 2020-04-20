@@ -36,11 +36,11 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    '~/plugins/favorite-filter',
     { src: '~plugins/element-ui' },
     '~/plugins/nuxt-i18n',
     '~/plugins/axios-accessor',
-    '~/plugins/axios'
+    '~/plugins/axios',
+    '~/plugins/favorite-filter'
   ],
   /*
    ** Nuxt.js dev-modules

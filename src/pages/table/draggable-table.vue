@@ -112,7 +112,7 @@ export default class DraggableTable extends Vue {
     await this.$store.dispatch('')
     const data = [
       {
-        uuid: 0,
+        id: 0,
         status: 'deleted',
         title: 'Sint tempora ut voluptate repellat est.',
         abstractContent:
@@ -138,7 +138,7 @@ export default class DraggableTable extends Vue {
       this.listLoading = false
     }, 0.5 * 1000)
     // this.total = data.length
-    this.oldList = this.list.map((v) => v.uuid)
+    this.oldList = this.list.map((v) => v.id)
     this.newList = this.oldList.slice()
     this.$nextTick(() => {
       this.setSort()
