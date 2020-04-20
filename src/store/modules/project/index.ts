@@ -7,7 +7,8 @@ import { RootState } from '~/types/state'
 
 const state: ProjectState = {
   projectData: null,
-  projectDetail: null
+  projectDetail: null,
+  loadingIndex: 0
 }
 
 const project: Module<ProjectState, RootState> = {

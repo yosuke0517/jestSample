@@ -87,9 +87,11 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Getter } from 'nuxt-property-decorator'
+import { mixins, Component, Getter } from 'nuxt-property-decorator'
+import { AxiosError } from 'axios'
 // import { i18n } from '~/plugins/nuxt-i18n'
 import { ProjectData, ProjectDetail } from '~/types/project'
+import { CapOptions } from '~/components/atoms/cap-options'
 
 export interface Item {
   favorite: any
@@ -106,7 +108,7 @@ export interface Values {
 }
 
 @Component({})
-export default class IndexPage extends Vue {
+export default class IndexPage extends mixins(CapOptions) {
   /** 初期表示情報 */
   @Getter('project/projectData') projectData: ProjectData[]
 
@@ -172,12 +174,27 @@ export default class IndexPage extends Vue {
   // TODO ページングはポストしていいのか、クライアントで完結させるのか。。。
   page() {}
 
-  load() {
-    alert('TODO load')
+  async load() {
     // ローディングスタート
+    const loading = this.$loading(this.loadingOptions)
     // APIアクセス
-    // テーブルデータ追加
-    // ローディング終了
+    await Promise.all([
+      this.$store.dispatch('project/incrementLoadingIndex'),
+      this.$store.dispatch(
+        'project/getProjectsData',
+        this.$store.state.project.loadingIndex
+      )
+    ])
+      .catch((error: AxiosError) => {
+        this.addError(error)
+      })
+      .finally(() => {
+        loading.close()
+      })
+  }
+
+  addError(error) {
+    console.log(error)
   }
 
   toggleFavorite() {
@@ -219,9 +236,6 @@ export default class IndexPage extends Vue {
     this.subject = this.projectDetail.subject
     this.sender = this.projectDetail.sender
     this.body = this.projectDetail.body
-    // if (event.property === 'favorite') {
-    //   alert('TODO:toggle favorite')
-    // }
   }
 
   // TODO clickでもいいかも

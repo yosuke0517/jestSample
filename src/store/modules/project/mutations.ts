@@ -7,6 +7,9 @@ const mutations: MutationTree<ProjectState> = {
   },
   projectsDetailMutation(state, { projectDetail }) {
     state.projectDetail = projectDetail
+  },
+  loadingIndexMutation(state) {
+    state.loadingIndex++
   }
 }
 
