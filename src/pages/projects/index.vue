@@ -47,7 +47,10 @@
               width="180"
             >
               <template v-slot="{ row }">
-                <span :class="row.favorite | favoriteFilter"></span>
+                <span
+                  :class="row.favorite | favoriteFilter"
+                  @click="toggleFavorite"
+                ></span>
               </template>
             </el-table-column>
             <el-table-column prop="date" label="Date" sortable width="180">
@@ -177,6 +180,10 @@ export default class IndexPage extends Vue {
     // ローディング終了
   }
 
+  toggleFavorite(event) {
+    alert('TODO:toggle favorite')
+  }
+
   click(event) {
     console.log(event)
   }
@@ -206,15 +213,15 @@ export default class IndexPage extends Vue {
   }
 
   // TODO 詳細検索
-  async rowclick(row: ProjectData, event) {
+  async rowclick(row: ProjectData) {
     await this.$store.dispatch('project/getProjectsDetail', row.id)
     this.date = this.projectDetail.date
     this.subject = this.projectDetail.subject
     this.sender = this.projectDetail.sender
     this.body = this.projectDetail.body
-    if (event.property === 'favorite') {
-      alert('TODO:toggle favorite')
-    }
+    // if (event.property === 'favorite') {
+    //   alert('TODO:toggle favorite')
+    // }
   }
 
   // TODO clickでもいいかも
