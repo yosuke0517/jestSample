@@ -292,7 +292,7 @@ export default class Search extends Vue {
 
 # ページのローディング処理
 
-- // TODO types 配下に以下のように型定義ファイルを作成
+- element ui のローディングを使用する
 
 ```javascript
 import { Vue } from 'nuxt-property-decorator'
@@ -311,6 +311,36 @@ export default class CapOptions extends Vue {
   }
 }
 
+```
+
+- 基本的には API 呼出し時に使用するが、その他処理待ちが発生する時にも使用すること
+- 使用方法は以下
+
+```
+// CapOptionsをimport
+import { CapOptions } from '~/components/atoms/cap-options'
+
+// mixinsに登録
+@Component({})
+export default class IndexPage extends mixins(CapOptions) {
+  // ローディングスタート
+  const loading = this.$loading(this.loadingOptions)
+
+  // APIアクセスのfinallyで閉じる
+  await Promise.all([
+    this.$store.dispatch('project/incrementLoadingIndex'),
+    this.$store.dispatch(
+      'project/getProjectsData',
+      this.$store.state.project.loadingIndex
+    )
+  ])
+  .catch((error: AxiosError) => {
+    this.addError(error)
+  })
+  .finally(() => {
+    loading.close()
+  })
+}
 ```
 
 # スタイルシート
