@@ -1,14 +1,7 @@
 <template>
   <header class="template__header">
     <div class="left-menu">
-      <el-tooltip
-        class="item"
-        effect="dark"
-        content="仮のcapreseaアイコン"
-        placement="top-start"
-      >
-        <i class="fas fa-exclamation-circle" @click="toHome"></i>
-      </el-tooltip>
+      <h3 style="color:#ffffff" @click="toHome">ロゴ（仮）</h3>
     </div>
     <div class="right-menu">
       <el-dropdown
@@ -56,7 +49,7 @@ export default class CapHeader extends Vue {
   height: 55px;
   overflow: hidden;
   width: 100%;
-  background: #007fff;
+  background: #c53211;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
