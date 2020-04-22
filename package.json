@@ -21,6 +21,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/js-cookie": "^2.2.5",
+    "dummy-json": "^2.0.0",
     "element-ui": "^2.4.11",
     "express": "^4.17.1",
     "file-saver": "^2.0.2",
