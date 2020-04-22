@@ -1,7 +1,7 @@
 export const ROUTES = {
   GET: {
-    PROJECTLIST: '/project/list',
-    DETAIL: '/xxx/detail/:id',
+    PROJECTLIST: '/projects/list',
+    DETAIL: '/projects/detail/:id',
     FAVORITE: '/xxx/favorite'
   },
   POST: {

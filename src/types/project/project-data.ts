@@ -1,5 +1,5 @@
 export interface ProjectData {
-  uuid: number
+  id: number
   status: string
   title: string
   abstractContent: string

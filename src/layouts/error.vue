@@ -1,10 +1,6 @@
 <template>
   <div>
-    <!-- <cap-header />
-    <cap-nav /> -->
-    <cap-template :collapse="true">
-      <nuxt />
-    </cap-template>
+    <h1 class="error">Error:管理者へ連絡してください</h1>
   </div>
 </template>
 <script lang="ts">
@@ -17,7 +13,7 @@ import CapTemplate from '~/components/organisms/cap-template.vue'
     CapTemplate
   }
 })
-export default class Default extends Vue {}
+export default class Error extends Vue {}
 </script>
 
 <style lang="scss">
@@ -70,5 +66,9 @@ html {
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
+}
+
+.error {
+  color: red;
 }
 </style>

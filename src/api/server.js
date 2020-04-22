@@ -9,10 +9,13 @@ app.use(
     credentials: true
   })
 )
-app.get('/project/list', (req, res) =>
+app.get('/projects/list', (req, res) =>
   res.json(require('./mocks/projects/get-item.json'))
 )
-// あとは欲しいだけ上記の1行とjsonファイルを追加するだけ
+app.get('/projects/detail', (req, res) => {
+  const response = res.json(require('./mocks/projects/get-detail.json'))
+  return response
+})
 
 const port = 8080
 app.listen(port, () =>

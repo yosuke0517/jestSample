@@ -5,16 +5,18 @@
   "author": "yosuke_takeuchi",
   "private": true,
   "scripts": {
-    "dev": "nuxt-ts",
+    "dev": "run-p dev:exec mock:api",
+    "dev:exec": "nuxt-ts",
     "build": "nuxt-ts build",
     "generate": "nuxt-ts generate",
     "start": "nuxt-ts start",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .ts,.js,.vue --ignore-path .gitignore .",
-    "mock:api": "node src/api/server.js"
+    "mock:api": "json-server --watch src/api/mock.json --routes src/api/routes.json --port 8080",
+    "mock:api_bk": "node src/api/server.js"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.12.1",
+    "@fortawesome/fontawesome-free": "^5.13.0",
     "@nuxt/typescript-runtime": "^0.4.0",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
@@ -41,6 +43,9 @@
     "eslint-config-prettier": "^4.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.0.1",
+    "fs": "0.0.1-security",
+    "json-server": "^0.16.1",
+    "npm-run-all": "^4.1.5",
     "nuxt-property-decorator": "^2.5.1",
     "prettier": "^1.16.4",
     "sass": "^1.26.3",

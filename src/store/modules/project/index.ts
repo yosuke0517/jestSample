@@ -6,7 +6,8 @@ import { ProjectState } from '~/types/project/state'
 import { RootState } from '~/types/state'
 
 const state: ProjectState = {
-  projectData: null
+  projectData: null,
+  projectDetail: null
 }
 
 const project: Module<ProjectState, RootState> = {
