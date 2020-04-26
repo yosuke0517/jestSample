@@ -122,7 +122,7 @@ export default class CapTemplate extends Vue {
       margin-top: $headerHeight;
       // height: calc(100% - #{$headerHeight} - #{$footerHeight});
       height: 80%;
-      overflow-y: hidden;
+      overflow: scroll;
       position: fixed;
     }
   }
