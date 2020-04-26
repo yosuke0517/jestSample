@@ -2,17 +2,17 @@
 
 > My glorious Nuxt.js project
 
-## ローカルで動作確認（サーバレスポンス含む）する場合はモックを起動（`npm run mock:api`）する必要有り。
+## ローカルで動作確認（サーバレスポンス含む）する場合はモックを起動（`npm run dev:local`）する必要有り。
 
 ```bash
 # install dependencies
 $ npm run install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# Local server and front-end boot with hot reload at localhost:3000
+$ npm run dev:local
 
-# start mock server
-$ npm run mock:api
+# front-end boot with hot reload at localhost:3000
+$ npm run dev:exec
 
 # 規約違反のコードを自動的に修正（コミットする前に必ず実施する）←CIで実施するようにする
 $ npm run lintfix
@@ -586,6 +586,7 @@ mutations.ts  // ミューテーション
 # 環境変数
 
 - 開発環境、検証環境、本番環境などの実行環境ごとに異なる設定値は環境変数として定義します。 環境変数は /config 配下に`envファイル`を準備します。
+- package.json にて各環境のビルドコマンドを作成済み
 
 ```bash
 config
