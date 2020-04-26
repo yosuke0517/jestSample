@@ -9,10 +9,10 @@ app.use(
     credentials: true
   })
 )
-app.get('/projects/list', (req, res) =>
+app.get('/projects/list', (res) =>
   res.json(require('./mocks/projects/get-item.json'))
 )
-app.get('/projects/detail', (req, res) => {
+app.get('/projects/detail', (res) => {
   const response = res.json(require('./mocks/projects/get-detail.json'))
   return response
 })
