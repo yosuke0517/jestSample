@@ -30,7 +30,8 @@ export default {
    */
   css: [
     'element-ui/lib/theme-chalk/index.css',
-    '@fortawesome/fontawesome-free/css/all.css'
+    '@fortawesome/fontawesome-free/css/all.css',
+    '@/assets/scss/main.scss'
   ],
   /*
    ** Plugins to load before mounting the App
@@ -56,8 +57,12 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/style-resources'
   ],
+  styleResources: {
+    scss: ['~/assets/scss/_variables.scss']
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -75,6 +80,8 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(_config: any, _ctx: any) {}
+    extend(config: any, _ctx: any) {
+      config.devtool = 'inline-cheap-module-source-map'
+    }
   }
 }
