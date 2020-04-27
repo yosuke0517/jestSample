@@ -101,12 +101,11 @@
 </template>
 
 <script lang="ts">
-import { mixins, Component, Getter } from 'nuxt-property-decorator'
+import { Vue, Component, Getter } from 'nuxt-property-decorator'
 import { AxiosError } from 'axios'
 // import { i18n } from '~/plugins/nuxt-i18n'
 import InfiniteLoading from 'vue-infinite-loading'
 import { ProjectData, ProjectDetail } from '~/types/project'
-import { CapOptions } from '~/components/atoms/cap-options'
 
 export interface Item {
   favorite: any
@@ -125,7 +124,7 @@ export interface Values {
 @Component({
   components: { InfiniteLoading }
 })
-export default class IndexPage extends mixins(CapOptions) {
+export default class IndexPage extends Vue {
   /** 初期表示情報 */
   @Getter('project/projectData') projectData: ProjectData[]
 
