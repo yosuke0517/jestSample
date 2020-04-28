@@ -1,0 +1,110 @@
+.template {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  $--layout-header-height: 55px;
+
+  /* Layout--------------------------*/
+  $--layout-sidebar-width: 200px;
+
+  // 閉じたときの幅(Elementに依存)
+  $--cas-menu-width--collapsed: 64px;
+
+  // ---------------------
+  // メイン部分
+  // ---------------------
+  &__wrapper {
+    margin-top: $--layout-header-height;
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-grow: 2;
+  }
+  // ---------------------
+  // サイドエリア
+  // ---------------------
+  &__side {
+    min-height: calc(100vh - #{$--layout-header-height});
+    //background-color: #808080;
+    position: fixed;
+    top: $--layout-header-height;
+    left: 0;
+
+    &__nav {
+      height: 100%;
+      max-height: calc(100vh - #{$--layout-header-height});
+      overflow-y: auto;
+    }
+  }
+
+  // ---------------------
+  // メインエリア
+  // ---------------------
+  &__main {
+    height: 100%;
+    width: calc(100% - #{$--layout-sidebar-width});
+    flex-grow: 2;
+    min-height: calc(100vh - #{$--layout-header-height});
+    margin-left: $--layout-sidebar-width;
+    transition: margin-left 0.3s ease-in-out;
+
+    // $headerHeight: 0px;
+    // $footerHeight: 60px;
+
+    &__header {
+      height: $headerHeight;
+      top: $--layout-header-height;
+      left: $--layout-sidebar-width;
+      position: fixed;
+      width: calc(100% - #{$--layout-sidebar-width});
+      transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+      z-index: 10;
+
+      &__title {
+        height: 100%;
+      }
+    }
+
+    &__footer {
+      height: $footerHeight;
+      width: calc(100% - 200px);
+      position: absolute; /*←絶対位置*/
+      bottom: 0; /*下に固定*/
+      z-index: 5;
+    }
+
+    &__inner {
+      padding: 20px;
+      margin-top: $headerHeight;
+      // height: calc(100% - #{$headerHeight} - #{$footerHeight});
+      height: 80%;
+      overflow: hidden;
+      position: fixed;
+    }
+  }
+
+  // ---------------------
+  // メニュー閉じ開き対応
+  // ---------------------
+  &__wrapper.nav-collapsed {
+    .template__main {
+      margin-left: $--cas-menu-width--collapsed;
+
+      &__header {
+        left: $--cas-menu-width--collapsed;
+        width: calc(100% - #{$--cas-menu-width--collapsed});
+      }
+    }
+  }
+  .footer {
+    border-top: 1px solid #eaeaea;
+    background-color: #fff;
+    // width: calc(100% - #{$--cas-menu-width--collapsed});
+    width: 100%;
+    &__copyright {
+      font-size: 1.2rem;
+      padding: 15px 20px;
+    }
+  }
+}

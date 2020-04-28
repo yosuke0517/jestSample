@@ -2,17 +2,17 @@
 
 > My glorious Nuxt.js project
 
-## ローカルで動作確認（サーバレスポンス含む）する場合はモックを起動（`npm run mock:api`）する必要有り。
+## ローカルで動作確認（サーバレスポンス含む）する場合はモックを起動（`npm run dev:local`）する必要有り。
 
 ```bash
 # install dependencies
 $ npm run install
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# Local server and front-end boot with hot reload at localhost:3000
+$ npm run dev:local
 
-# start mock server
-$ npm run mock:api
+# front-end boot with hot reload at localhost:3000
+$ npm run dev:exec
 
 # 規約違反のコードを自動的に修正（コミットする前に必ず実施する）←CIで実施するようにする
 $ npm run lintfix
@@ -292,26 +292,18 @@ export default class Search extends Vue {
 
 # ページのローディング処理
 
-- // TODO types 配下に以下のように型定義ファイルを作成
+- vue-loading-overlay を使用する
+- トップレベル（default.vue）にローディングコンポーネントを設置しているため各ページではミューテーションを実行するだけ
 
 ```javascript
-import { Vue } from 'nuxt-property-decorator'
-export default class CapOptions extends Vue {
-  readonly searchRadioOptions: string[]
-  readonly termRadioOptions: string[]
-  readonly termSearchOptions: string[]
-  /**
-   * ローディングオプション
-   */
-  readonly loadingOptions: {
-    lock: boolean
-    text: string
-    spinner: string
-    background: string
-  }
-}
+// ローディング開始
+this.$store.commit('common/isLoadingMutation', true)
 
+// ローディング終了
+this.$store.commit('common/isLoadingMutation', false)
 ```
+
+- 基本的には API 呼出し時に使用するが、その他処理待ちが発生する時にも使用すること
 
 # スタイルシート
 
@@ -556,6 +548,7 @@ mutations.ts  // ミューテーション
 # 環境変数
 
 - 開発環境、検証環境、本番環境などの実行環境ごとに異なる設定値は環境変数として定義します。 環境変数は /config 配下に`envファイル`を準備します。
+- package.json にて各環境のビルドコマンドを作成済み
 
 ```bash
 config

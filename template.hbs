@@ -1,0 +1,14 @@
+[
+{{#repeat 5}}
+{
+"id": {{@index}},
+"date": "{{date '2020-01-01' '2020-05-01' 'DD/MM/YYYY'}}",
+"from": "{{company}}",
+"subject": "{{title}}",
+"group": "{{company}}",
+"keyword": "{{company}}",
+"station": "{{city}}",
+"favorite": {{boolean}}
+}
+{{/repeat}}
+]

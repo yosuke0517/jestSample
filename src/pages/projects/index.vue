@@ -1,69 +1,74 @@
 <template>
-  <div class="projectList">
-    <div class="projectList__pageTitle">
+  <div class="project-list">
+    <div class="project-list__pageTitle">
       <i class="fas fa-th-large" />
       <h1>Project Mails</h1>
-      <div class="projectList__buttons"></div>
-      <!--TODO レスポンシブ対応-->
-      <el-button class="plain" @click="search">お気に入り一覧</el-button>
-      <el-button class="plain" icon="el-icon-search" @click="search"
-        >絞り込み</el-button
-      >
-      <el-autocomplete
-        v-model="input"
-        class="inline-input"
-        :fetch-suggestions="querySearch"
-        placeholder="please input"
-        @select="handleSelect"
-      ></el-autocomplete>
-      <el-button class="plain" icon="el-icon-search" @click="search"
-        >検索</el-button
-      >
+      <div class="project-list__buttons">
+        <el-button class="button-green" @click="search"
+          >お気に入り一覧</el-button
+        >
+        <el-button class="button-green" icon="el-icon-search" @click="search"
+          >絞り込み</el-button
+        >
+        <el-autocomplete
+          v-model="input"
+          class="inline-input"
+          :fetch-suggestions="querySearch"
+          placeholder="please input"
+          @select="handleSelect"
+        ></el-autocomplete>
+        <el-button class="button-green" icon="el-icon-search" @click="search"
+          >検索</el-button
+        >
+      </div>
     </div>
-    <el-row type="flex" class="cap-row--project">
+    <el-row type="flex" class="project-list__content">
       <el-col
         :xs="8"
         :sm="12"
-        :md="12"
+        :md="9"
         :lg="17"
         :xl="17"
-        class="cap-col--prjtable"
+        class="project-list__content table"
       >
-        <div class="table">
-          <el-table
-            v-infinite-scroll="load"
-            border
-            height="800"
-            :data="projectData"
-            :default-sort="{ prop: 'date', order: 'descending' }"
-            @row-dblclick="rowdbclick"
-            @row-click="rowclick"
-            @click="click"
+        <!--TODO tableの高さをレスポンシブ-->
+        <el-table
+          border
+          :data="projectData"
+          :default-sort="{ prop: 'date', order: 'descending' }"
+          @row-dblclick="rowdbclick"
+          @row-click="rowclick"
+          @click="click"
+        >
+          <el-table-column
+            prop="favorite"
+            label="お気に入り"
+            sortable
+            width="180"
           >
-            <el-table-column
-              prop="favorite"
-              label="お気に入り"
-              sortable
-              width="180"
-            >
-              <template v-slot="{ row }">
-                <span
-                  :class="row.favorite | favoriteFilter"
-                  @click="toggleFavorite"
-                ></span>
-              </template>
-            </el-table-column>
-            <el-table-column prop="date" label="Date" sortable width="180">
-            </el-table-column>
-            <el-table-column prop="from" label="From" width="180">
-            </el-table-column>
-            <el-table-column prop="subject" label="Subject" width="300">
-            </el-table-column>
-            <el-table-column prop="keyword" label="Keyword"> </el-table-column>
-            <el-table-column prop="station" label="最寄り駅"> </el-table-column>
-            <el-table-column prop="id" label="id" sortable> </el-table-column>
-          </el-table>
-        </div>
+            <template v-slot="{ row }">
+              <span
+                :class="row.favorite | favoriteFilter"
+                @click="toggleFavorite"
+              ></span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="date" label="Date" sortable width="180">
+          </el-table-column>
+          <el-table-column prop="from" label="From" width="180">
+          </el-table-column>
+          <el-table-column prop="subject" label="Subject" width="300">
+          </el-table-column>
+          <el-table-column prop="keyword" label="Keyword"> </el-table-column>
+          <el-table-column prop="station" label="最寄り駅"> </el-table-column>
+          <el-table-column prop="id" label="id" sortable> </el-table-column>
+          <infinite-loading
+            slot="append"
+            force-use-infinite-wrapper=".el-table__body-wrapper"
+            @infinite="load"
+          >
+          </infinite-loading>
+        </el-table>
       </el-col>
       <el-col
         :offset="1"
@@ -72,15 +77,24 @@
         :md="2"
         :lg="2"
         :xl="2"
-        class="cap-col--prjdetail"
+        class="project-list__content detail"
       >
-        <span>Date</span><el-input v-model="date" :readonly="true"></el-input>
-        <span>Subject</span>
-        <el-input v-model="subject" :readonly="true"></el-input
-        ><span>Sender</span
-        ><el-input v-model="sender" :readonly="true"></el-input>
-        <span>Body</span
-        ><el-input v-model="body" type="textarea" :readonly="true"></el-input>
+        <div class="detail__container">
+          <el-card class="box-card">
+            <span>Date</span
+            ><el-input v-model="date" :readonly="true"></el-input>
+            <span>Subject</span>
+            <el-input v-model="subject" :readonly="true"></el-input
+            ><span>Sender</span
+            ><el-input v-model="sender" :readonly="true"></el-input>
+            <span>Body</span
+            ><el-input
+              v-model="body"
+              type="textarea"
+              :readonly="true"
+            ></el-input>
+          </el-card>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -88,7 +102,9 @@
 
 <script lang="ts">
 import { Vue, Component, Getter } from 'nuxt-property-decorator'
+import { AxiosError } from 'axios'
 // import { i18n } from '~/plugins/nuxt-i18n'
+import InfiniteLoading from 'vue-infinite-loading'
 import { ProjectData, ProjectDetail } from '~/types/project'
 
 export interface Item {
@@ -105,7 +121,9 @@ export interface Values {
   value: string
 }
 
-@Component({})
+@Component({
+  components: { InfiniteLoading }
+})
 export default class IndexPage extends Vue {
   /** 初期表示情報 */
   @Getter('project/projectData') projectData: ProjectData[]
@@ -156,8 +174,10 @@ export default class IndexPage extends Vue {
 
   date: string = ''
 
+  loading: boolean = false
+
   async fetch({ store }) {
-    await store.dispatch('project/getProjectsData')
+    await store.dispatch('project/getProjectsData', 0)
   }
 
   mounted() {
@@ -172,12 +192,32 @@ export default class IndexPage extends Vue {
   // TODO ページングはポストしていいのか、クライアントで完結させるのか。。。
   page() {}
 
-  load() {
-    alert('TODO load')
+  async load($state) {
     // ローディングスタート
+    this.$store.commit('common/isLoadingMutation', true)
     // APIアクセス
-    // テーブルデータ追加
-    // ローディング終了
+    await Promise.all([
+      this.$store.commit('project/loadingIndexMutation'),
+      this.$store
+        .dispatch(
+          'project/getProjectsData',
+          this.$store.state.project.loadingIndex
+        )
+        .catch((error: AxiosError) => {
+          this.addError(error)
+          // エラーが返ってきたら'No more dataを表示する'
+          $state.complete()
+        })
+        .finally(() => {
+          this.$store.commit('common/isLoadingMutation', false)
+          // ローディングを閉じる
+          $state.loaded()
+        })
+    ])
+  }
+
+  addError(error) {
+    console.log(error)
   }
 
   toggleFavorite() {
@@ -219,9 +259,6 @@ export default class IndexPage extends Vue {
     this.subject = this.projectDetail.subject
     this.sender = this.projectDetail.sender
     this.body = this.projectDetail.body
-    // if (event.property === 'favorite') {
-    //   alert('TODO:toggle favorite')
-    // }
   }
 
   // TODO clickでもいいかも
@@ -255,46 +292,59 @@ export default class IndexPage extends Vue {
 </script>
 
 <style lang="scss">
-.projectList {
+/** pageTitle height*/
+$pageTitleHeight: 70px;
+
+.project-list {
   &__pageTitle {
     display: flex;
+    // position: fixed;
+    height: $pageTitleHeight;
   }
   .fa-th-large {
     margin-top: 13px;
     margin-right: 5px;
   }
   &__buttons {
-    margin-left: 200px;
+    margin-left: 100px;
     margin-bottom: 10px;
-  }
-}
 
-.cap-col--prjtable {
-  overflow-y: scroll;
-  overflow-x: scroll;
-  max-height: 771px;
-}
-.cap-col--prjdetail {
-  .el-input {
-    margin-bottom: 20px;
-    width: 300px;
-  }
-
-  .el-textarea {
-    margin-bottom: 20px;
-    width: 300px;
-    height: 300px;
-
-    &__inner {
-      height: 300px;
+    .el-input__inner {
+      margin-left: 20px;
+      margin-top: 20px;
+      width: 200px;
     }
   }
-}
 
-.inline-input {
-  margin-left: 20px;
-  margin-top: 20px;
-  width: 15%;
+  &__content {
+    display: flex;
+    height: calc(
+      100% - #{$pageTitleHeight} - #{$footerHeight} - #{$headerHeight}
+    );
+    .table {
+      .el-table__body-wrapper {
+        overflow: scroll;
+        max-height: 650px;
+      }
+    }
+
+    .detail {
+      .el-input {
+        margin-bottom: 20px;
+        width: 300px;
+      }
+
+      .el-textarea {
+        margin-bottom: 20px;
+        width: 300px;
+        height: 300px;
+
+        &__inner {
+          height: 300px;
+        }
+      }
+    }
+  }
 }
 
 .plain {

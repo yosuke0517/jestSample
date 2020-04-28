@@ -1,10 +1,12 @@
 import Vuex, { StoreOptions } from 'vuex'
 import { RootState } from '~/types/state'
 import project from '~/store/modules/project'
+import common from '~/store/modules/common'
 
 const storeOptions: StoreOptions<RootState> = {
   modules: {
-    project
+    project,
+    common
   }
 }
 
