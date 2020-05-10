@@ -16,7 +16,7 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "types": ["@types/node", "@nuxt/types"]
+    "types": ["@types/node", "@nuxt/types", "@types/jest", "@types/webpack-env"]
   },
   "exclude": ["node_modules"]
 }

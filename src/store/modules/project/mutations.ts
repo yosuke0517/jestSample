@@ -5,8 +5,8 @@ const mutations: MutationTree<ProjectState> = {
   projectsDataMutation(state, { projectData }) {
     if (!state.projectData) {
       state.projectData = projectData
-    } else {
-      projectData.forEach((item) => {
+    } else if (!projectData) {
+      projectData.data.forEach((item) => {
         state.projectData.push(item)
       })
     }

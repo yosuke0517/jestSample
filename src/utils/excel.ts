@@ -162,7 +162,7 @@ export const exportTable2Excel = (id: string) => {
       new Blob([s2ab(wbout)], {
         type: 'application/octet-stream'
       }),
-      'test.xlsx'
+      'tests.xlsx'
     )
   }
 }

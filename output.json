@@ -1,53 +1,52 @@
 [
-{
-"id": 0,
-"date": "27/01/2020",
-"from": "Hivemind",
-"subject": "Dr",
-"group": "Quadtek",
-"keyword": "Terrasys",
-"station": "Rockhampton",
-"favorite": true
-},
-{
-"id": 1,
-"date": "22/02/2020",
-"from": "NitroSystems",
-"subject": "Lady",
-"group": "Xenosys",
-"keyword": "Infracom",
-"station": "Cardiff",
-"favorite": false
-},
-{
-"id": 2,
-"date": "04/02/2020",
-"from": "Dynaroc",
-"subject": "Lord",
-"group": "Connic",
-"keyword": "CoreXTS",
-"station": "Danbury",
-"favorite": false
-},
-{
-"id": 3,
-"date": "26/03/2020",
-"from": "VTGrafix",
-"subject": "Madam",
-"group": "Infratouch",
-"keyword": "PeerSys",
-"station": "Albany",
-"favorite": true
-},
-{
-"id": 4,
-"date": "05/04/2020",
-"from": "FastMart",
-"subject": "Mr",
-"group": "Sealine",
-"keyword": "TrueXT",
-"station": "Woodville",
-"favorite": true
-}
+  {
+    "id": 0,
+    "date": "27/01/2020",
+    "from": "Hivemind",
+    "subject": "Dr",
+    "group": "Quadtek",
+    "keyword": "Terrasys",
+    "station": "Rockhampton",
+    "favorite": true
+  },
+  {
+    "id": 1,
+    "date": "22/02/2020",
+    "from": "NitroSystems",
+    "subject": "Lady",
+    "group": "Xenosys",
+    "keyword": "Infracom",
+    "station": "Cardiff",
+    "favorite": false
+  },
+  {
+    "id": 2,
+    "date": "04/02/2020",
+    "from": "Dynaroc",
+    "subject": "Lord",
+    "group": "Connic",
+    "keyword": "CoreXTS",
+    "station": "Danbury",
+    "favorite": false
+  },
+  {
+    "id": 3,
+    "date": "26/03/2020",
+    "from": "VTGrafix",
+    "subject": "Madam",
+    "group": "Infratouch",
+    "keyword": "PeerSys",
+    "station": "Albany",
+    "favorite": true
+  },
+  {
+    "id": 4,
+    "date": "05/04/2020",
+    "from": "FastMart",
+    "subject": "Mr",
+    "group": "Sealine",
+    "keyword": "TrueXT",
+    "station": "Woodville",
+    "favorite": true
+  }
 ]
-

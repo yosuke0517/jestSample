@@ -16,7 +16,8 @@
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "lintfix": "eslint --fix --ext .ts,.js,.vue --ignore-path .gitignore .",
     "mock:api": "json-server --watch src/api/mock.json --routes src/api/routes.json --port 8080",
-    "mock:api_bk": "node src/api/server.js"
+    "mock:api_bk": "node src/api/server.js",
+    "test": "jest --config jest.config.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.13.0",
@@ -44,20 +45,31 @@
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@types/file-saver": "^2.0.1",
+    "@types/jest": "24.0.15",
+    "@types/lodash": "^4.14.150",
     "@types/sortablejs": "^1.10.2",
+    "@types/webpack-env": "^1.15.2",
+    "@vue/test-utils": "1.0.0-beta.29",
+    "axios-mock-adapter": "^1.18.1",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^26.0.1",
     "cors": "^2.8.5",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-jest": "^23.9.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "^3.0.1",
     "fs": "0.0.1-security",
+    "jest": "24.8.0",
     "json-server": "^0.16.1",
     "node-sass": "^4.14.0",
     "npm-run-all": "^4.1.5",
     "nuxt-property-decorator": "^2.5.1",
     "prettier": "^1.16.4",
     "sass": "^1.26.3",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "ts-jest": "24.0.2",
+    "vue-jest": "3.0.4"
   }
 }
